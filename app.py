@@ -1,7 +1,4 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import plotly.express as px
-import pandas as pd
 import base64
 from fpdf import FPDF
 
@@ -37,17 +34,11 @@ def classify_sequence(sequence, species):
     # Replace with your actual classification logic
     return f"Result: The given DNA sequence belongs to species X"
 
-def plot_sequence(sequence):
-    bases = ['A', 'T', 'C', 'G']
-    base_counts = {base: sequence.count(base) for base in bases}
-    fig = px.pie(values=list(base_counts.values()), names=list(base_counts.keys()), title='Base Composition')
-    return fig
-
 # Initialize session state variables if they don't exist
 if 'pdf_output' not in st.session_state:
     st.session_state['pdf_output'] = None
 
-st.title("NucleoView 🦠")
+st.title("NucleoVet 🦠")
 st.write("This app enables classification of species based on their DNA sequence.")
 
 study_name = st.text_input("Study Name:")
