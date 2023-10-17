@@ -38,7 +38,7 @@ def classify_sequence(sequence, species):
 if 'pdf_output' not in st.session_state:
     st.session_state['pdf_output'] = None
 
-st.title("🦠\_\_\_\_\_\_\_\_NucleoVet\_\_\_\_\_\_\_\_🦠")
+st.title("🦠NucleoVet🦠")
 st.write("This app enables classification of species based on their DNA sequence.")
 
 study_name = st.text_input("Study Name:")
