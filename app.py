@@ -30,9 +30,12 @@ st.markdown(background, unsafe_allow_html=True)
 
 
 def classify_sequence(sequence, species):
-    # Placeholder for your classification logic
-    # Replace with your actual classification logic
-    return f"Result: The given DNA sequence belongs to species X"
+    n=len(sequence)
+    if n<100:
+        res = "Result: The given DNA sequence is too short to be classified"
+    elif species == "Virus":
+        res = "Result: The given DNA sequence is a "+species
+    return res
 
 # Initialize session state variables if they don't exist
 if 'pdf_output' not in st.session_state:
@@ -46,7 +49,7 @@ study_date = st.date_input("Study Date:")
 study_time = st.time_input("Study Time:")
 
 species_options = ["Virus", "Bacteria", "Fungus"]
-selected_species = st.selectbox("Select Specie:", species_options)
+selected_species = st.selectbox("Select Species:", species_options)
 
 uploaded_file = st.file_uploader("Choose a DNA sequence file", type=["txt", "fasta"])
 
@@ -80,7 +83,6 @@ if st.button("Classify this Sequence"):
     pdf.cell(200, 10, txt=f"Study Date: {study_date.strftime('%Y-%m-%d')}", ln=True)
     pdf.cell(200, 10, txt=f"Study Time: {study_time.strftime('%H:%M:%S')}", ln=True)
     pdf.cell(200, 10, txt=f"Selected Specie: {selected_species}", ln=True)
-    pdf.cell(200, 10, txt=f"DNA Sequence: {dna_sequence}", ln=True)
     pdf.cell(200, 10, txt=result, ln=True)
     
     st.session_state['pdf_output'] = pdf.output(dest='S').encode('latin')
