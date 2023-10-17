@@ -34,7 +34,7 @@ def classify_sequence(sequence, species):
     if n<100:
         res = "Result: The given DNA sequence is too short to be classified"
     elif species == "Virus":
-        res = "Result: The given DNA sequence is a "+species
+        res = "Result: The given DNA sequence contains Viral DNA"
     return res
 
 # Initialize session state variables if they don't exist
